@@ -1,28 +1,28 @@
 [book]
 authors = ["Ayoub EL Mhamdi"]
-language = "en"
+language = "fr"
 multilingual = false
 src = "src"
-title = "Projects Rosseta"
+title = "Contrôle qualité en radiothérapie"
 
 [build]
 create-missing = false
 build-dir = "book/html"
 
 [output.html]
-site-url = "/projects/"
+site-url = "/CQ/"
 no-section-label = true
 default-theme = "navy"
 preferred-dark-theme = "navy"
-git-repository-url = "https://github.com/ayoubelmhamdi/projects"
-edit-url-template = "https://github.com/ayoubelmhamdi/projects/tree/master/{path}"
+git-repository-url = "https://github.com/ayoubelmhamdi/CQ"
+edit-url-template = "https://github.com/ayoubelmhamdi/CQ/tree/master/{path}"
 additional-css = ["./theme/tabbed-code-blocks.css"]
 additional-js = ["./theme/tabbed-code-blocks.js", "./theme/highlight.css"]
 
 
-mathjax-support = true
-# [output.katex]
-# [preprocessor.katex]
+# mathjax-support = true
+[output.katex]
+[preprocessor.katex]
 
 # [output.linkcheck]
 # optional = true
