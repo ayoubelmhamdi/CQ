@@ -11,7 +11,7 @@ build-dir = "book/html"
 
 [output.html]
 site-url = "/CQ/"
-no-section-label = true
+# no-section-label = true
 default-theme = "navy"
 preferred-dark-theme = "navy"
 git-repository-url = "https://github.com/ayoubelmhamdi/CQ"

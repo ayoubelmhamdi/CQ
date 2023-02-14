@@ -1,6 +1,6 @@
 # Summary
 
-- [Introduction](./README.md)
+- [INTRODUCTION](./README.md)
 - [GAMMA CAMERA](./gamma_camera_ch0.md)
   - [Théorique](./gamma_camera_theorique.md)
     - [Scintigraphique planaire](./gamma_camera_scintigraphique_planaire_ch_0.md)
