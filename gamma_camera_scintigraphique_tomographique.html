@@ -1,0 +1,543 @@
+<!DOCTYPE HTML>
+<html lang="fr" class="sidebar-visible no-js navy">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Tomographique - Contrôle qualité en radiothérapie</title>
+
+
+        <!-- Custom HTML head -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.css" integrity="sha384-Um5gpz1odJg5Z4HAmzPtgZKdTBHZdw8S29IecapCSB31ligYPhHQZMIlWLYQGVoc" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="css/tavianator.css">
+        
+        <script defer src="https://cdn.jsdelivr.net/npm/katex@0.13.11/dist/katex.min.js" integrity="sha384-YNHdsYkH6gMx9y3mRkmcJ2mFUjTd0qNQQvY9VYZgQd7DcN7env35GzlmFaZ23JGp" crossorigin="anonymous"></script>
+        
+        <script src="tavianator.js"></script>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-EBDQXGZ6R1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-EBDQXGZ6R1');
+        </script>
+
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
+
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./theme/tabbed-code-blocks.css">
+
+    </head>
+    <body>
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "navy";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script>
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script>
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('navy')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script>
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="index.html"><strong aria-hidden="true">1.</strong> INTRODUCTION</a></li><li class="chapter-item expanded "><a href="gamma_camera_ch0.html"><strong aria-hidden="true">2.</strong> GAMMA CAMERA</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gamma_camera_theorique.html"><strong aria-hidden="true">2.1.</strong> Théorique</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gamma_camera_scintigraphique_planaire_ch_0.html"><strong aria-hidden="true">2.1.1.</strong> Scintigraphique planaire</a></li><li class="chapter-item expanded "><a href="gamma_camera_scintigraphique_tomographique.html" class="active"><strong aria-hidden="true">2.1.2.</strong> Tomographique</a></li><li class="chapter-item expanded "><a href="gamma_camera_scintigraphique_corps_entier.html"><strong aria-hidden="true">2.1.3.</strong> Corps entier</a></li></ol></li><li class="chapter-item expanded "><a href="gamma_camera_pratique.html"><strong aria-hidden="true">2.2.</strong> Pratique</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="gamma_camera_materiel.html"><strong aria-hidden="true">2.2.1.</strong> Matériel</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="pet_ch0.html"><strong aria-hidden="true">3.</strong> PET CT</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pet_theorique.html"><strong aria-hidden="true">3.1.</strong> théorique</a></li><li class="chapter-item expanded "><a href="pet_pratique.html"><strong aria-hidden="true">3.2.</strong> pratique</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="pet_materiel.html"><strong aria-hidden="true">3.2.1.</strong> matériel</a></li></ol></li></ol></li><li class="chapter-item expanded "><a href="radiologie_conventionnel_ch0.html"><strong aria-hidden="true">4.</strong> RADIOLOGIE CONVENTIONNEL</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="radiologie_conventionnel_theorique.html"><strong aria-hidden="true">4.1.</strong> théorique</a></li><li class="chapter-item expanded "><a href="radiologie_conventionnel_pratique.html"><strong aria-hidden="true">4.2.</strong> pratique</a></li><li><ol class="section"><li class="chapter-item expanded "><a href="radiologie_conventionnel_materiel.html"><strong aria-hidden="true">4.2.1.</strong> matériel</a></li></ol></li></ol></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="menu-title">Contrôle qualité en radiothérapie</h1>
+
+                    <div class="right-buttons">
+                        <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                        <a href="https://github.com/ayoubelmhamdi/CQ" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                        <a href="https://github.com/ayoubelmhamdi/CQ/tree/master/src/gamma_camera_scintigraphique_tomographique.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+
+                    </div>
+                </div>
+
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script>
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css" integrity="sha384-AfEj0r4/OFrOo5t7NnNe46zW/tFgW6x/bCJG8FqQCEo3+Aro6EYUG4+cU+KJWu/X" crossorigin="anonymous">
+<h1 id="4-organisation-du-controle-qualite-et-du-suivi-des-performances"><a class="header" href="#4-organisation-du-controle-qualite-et-du-suivi-des-performances">4. ORGANISATION DU CONTROLE QUALITE ET DU SUIVI DES PERFORMANCES</a></h1>
+<h2 id="contexte-reglementaire"><a class="header" href="#contexte-reglementaire">CONTEXTE REGLEMENTAIRE</a></h2>
+<p>L'arrêté du 3 mars 2003 relatif à l'obligation de maintenance et de
+contrôle de qualité des dispositifs médicaux (DM) précise que les DM
+'nécessaires à la réalisation des actes de médecine nucléaire' sont
+soumis d'une part à l'obligation de maintenance et d'autre part à un
+double régime de contrôle : celui prévu par l'article L. 5212-1 du code
+de la santé publique et les articles R. 5212-25 à R. 5212-35 concernant
+le contrôle interne, réalisé par l'exploitant ou sous sa responsabilité
+par un prestataire externe de son choix, et le contrôle externe, réalisé
+par un organisme de contrôle indépendant agréé par l'AFSSAPS. Pour la
+médecine nucléaire, la décision du 25 novembre 2008 fixe les modalités
+du contrôle de qualité des caméras à scintillations et décrit les
+procédures liées au contrôle interne (section 6), aux scanographes
+associés (section 7) et du contrôle externe qui relève d'un audit annuel
+(section 10).</p>
+<p>L'organisation du contrôle de qualité des gamma caméras, y compris les
+systèmes hybrides, est liée à l'offre clinique supportée par le système
+et aux exigences en termes de qualité d'images et de quantification
+telles que définies par les critères des bonnes pratiques des examens
+scintigraphiques. Le cadre défini par l'AFSSAPS doit être placé en
+perspective d'exigences complémentaires liées au matériel et aux
+procédures cliniques en place dans le service.</p>
+<p>Pour mettre en oeuvre le contrôle de qualité, il est possible d'utiliser
+les procédures et les accessoires mis à disposition par le fournisseur,
+en liaison avec les prestations de maintenance au cours desquelles les
+calibrages du dispositif sont mis à jour.</p>
+<p>La traçabilité des résultats peut faire l'objet d'une intégration dans
+le système d'information de l'établissement. Les contraintes
+d'immobilisation, les ressources humaines et matérielles qui découlent
+de l'organisation spécifique d'un site peuvent alors être évaluées.</p>
+<p>Dans ce chapitre, nous décrirons :</p>
+<p>- les documents de référence : vérification initiale, cahier de bord,
+(inventaire et registre article R5212-28 du code de la santé publique)
+nécessaires à la traçabilité et au contrôle externe ;</p>
+<p>- le programme interne du contrôle de qualité périodique du système et
+des logiciels disponibles sur le système.</p>
+<h2 id="documents-de-reference"><a class="header" href="#documents-de-reference">DOCUMENTS DE REFERENCE</a></h2>
+<h3 id="fiche-inventaire"><a class="header" href="#fiche-inventaire">Fiche inventaire</a></h3>
+<p>Au niveau du système d'acquisition, cette fiche constitue l'inventaire
+du dispositif et mentionne la marque et le modèle de la caméra à
+scintillations et du scanographe associé, son numéro de série et la date
+de mise en service. A la mise en service clinique ou à la mise un œuvre
+de nouveaux protocoles cliniques, une mise à jour mentionne :</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span></span></span></span> La version logicielle,</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span></span></span></span> Les radionucléides et les collimateurs employés en mode planaire,</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span></span></span></span> Les caractéristiques d'acquisition en mode corps-entier
+(collimateurs, radionucléides, type de déplacement et vitesse de
+balayage en déplacement continu)</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span></span></span></span> Les caractéristiques d'acquisition en mode tomographique
+(collimateurs, radionucléides, type d'orbite, dispositif de contourage,
+orientation des détecteurs)</p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&gt;</span></span></span></span> Les paramètres d'acquisition employés en imagerie de transmission
+(tension, charge de tube, vitesse de rotation, collimation, déplacement
+de la table, modulation d'intensité, indices dosimétriques).</p>
+<p>La liste des sources scellées nécessaires au calibrage et leur
+certificat d'étalonnage sont portés à l'inventaire du dispositif.</p>
+<h3 id="rapport-de-qualification"><a class="header" href="#rapport-de-qualification">Rapport de qualification</a></h3>
+<p>Il n'existe pas d'obligation réglementaire relative à l'existence d'un
+document pour le rapport de qualification de la caméra à scintillations.</p>
+<p>En liaison avec le représentant du fournisseur responsable de
+l'installation, les calibrages nucléaires réalisés en usine et sur le
+site lors de l'installation sont inventoriés. Pour chaque radionucléide,
+sont spécifiées :</p>
+<p>- les fenêtres spectrométriques et position du pic d'absorption totale
+de référence,</p>
+<p>- les tables de correction associées à ces paramètres (énergie,
+linéarité et uniformité),</p>
+<p>- les caractéristiques des sources radioactives (activité,
+positionnement de la source), ainsi que la limite de taux de comptage
+préconisée par le constructeur pour le test de non-uniformité.</p>
+<p>- les accessoires nécessaires au contrôle de qualité et leurs
+conditions de mise en œuvre. Les opérations de contrôle initial sont
+définies contractuellement entre le fournisseur et l'exploitant dans le
+document de cahier des charges du dispositif.</p>
+<p>L'activimètre utilisé pour le mesurage des sources doit être calibré
+avec une précision inférieure ou égale à <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">5%</span></span></span></span> pour les radionucléides
+employés.</p>
+<p>L'évaluation des performances du système fait appel aux procédures
+décrites dans le chapitre 3. L'inventaire des objets test est donné en
+tableau 4-1.</p>
+<h1 id="sources-radioactives"><a class="header" href="#sources-radioactives">Sources radioactives</a></h1>
+<p>Il est préférable, pour des questions de préparation et de
+reproductibilité des conditions de mesure, d'utiliser au quotidien une
+source plane scellée de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">57</span></span></span></span></span></span></span></span></span></span></span></span> Co à la place <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord mathnormal">d</span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">99</span><span class="mord mtight"><span class="mspace nobreak mtight"><span class="mtight"> </span></span><span class="mord mathrm mtight">m</span></span></span></span></span></span></span></span></span></span></span></span></span>
+Tc. Certaines précautions, décrites en annexe 1 encadrent l'utilisation
+d'une nouvelle source de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">57</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">Co</span></span></span></span></span> en raison de la présence
+de contaminants.</p>
+<p>Pour les tests de qualification et de référence, il convient d'employer
+le <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">99</span><span class="mord mtight"><span class="mspace nobreak mtight"><span class="mtight"> </span></span><span class="mord mathrm mtight">m</span></span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">Tc</span></span></span></span></span> et le <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">131</span></span></span></span></span></span></span></span></span><span class="mord mathrm">I</span></span></span></span>; le
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">201</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">Tl</span></span></span></span></span> est utilisé pour tester l'uniformité si des
+tables de calibrage spécifiques sont associées à ce radionucléide. Ces
+radionucléides sont utilisés pour les examens cliniques et généralement
+disponibles dans les services de Médecine Nucléaire. Objets test</p>
+<p>![](https://cdn.mathpix.com/cropped/2023_02_14_c5cac6413f5f6a21deb5g-04.jpg?height=1930&amp;width=1642&amp;top_left_y=297&amp;top_left_x=207)</p>
+<p>Tableau 4.1. Liste des objets test utilisés pour les tests de
+qualification d'une caméra à scintillations et leur suivi.</p>
+<p>Lors d'un appel d'offres concernant l'acquisition d'une gamma-caméra, il
+est important que le matériel nécessaire à la réalisation des contrôles
+qualité soit acheté et disponible en même temps que l'équipement.</p>
+<h1 id="logiciels-danalyse"><a class="header" href="#logiciels-danalyse">Logiciels d'analyse</a></h1>
+<p>Le traitement des données repose à la fois sur la bibliothèque
+logicielle fournie par le constructeur pour la reconstruction des
+projections en mode tomographique ( dont le nom et la version logicielle
+seront enregistrés) et une bibliothèque de traitement d'images, dans la
+mesure du possible, indépendante du fournisseur du système. Différents
+logiciels en domaine public (ImageJ, MIPAV, ...) sont utiles dans ce
+contexte.</p>
+<p>Les fonctionnalités de base requises dans la bibliothèque de traitement
+d'images comprennent :</p>
+<p>- L'export des images en format normalisé (Interfile, DICOM3).</p>
+<p>- La relecture d'images reconstruites et des paramètres nécessaires à
+l'analyse quantitative des données (taille des voxels, durée d'examen,
+valeur des pixels,....) ;</p>
+<p>- L'analyse statistique d'images (moyenne, écart-type) par régions
+d'intérêt paramétrables ;</p>
+<p>- La détermination du centre de masse d'une structure d'intérêt dans
+l'image ;</p>
+<p>- La détermination de profils paramétrables (épaisseur d'intégration) ;</p>
+<p>- La détermination de distances entre points d'intérêt.</p>
+<p>*Lorsque ces images sont analysées par l'intermédiaire d'un système
+d'archivage et de communication des images (PACS) ou par un nouveau
+logiciel de traitement , il est nécessaire de s'assurer que le service
+DICOM d'échanges des images produit des données dont la statistique de
+comptage est fidèle aux données natives, le cas échéant des utilitaires
+existent dans les bibliothèques domaine public (par exemple, le plug-in
+rescale (ImageJ) pour les séquences tomographiques ).</p>
+<p>Pour les dispositifs hybrides :</p>
+<p>- Les paramètres de traitement des images TDM en images d'atténuation ;</p>
+<p>- Lorsque les images d'atténuation ne sont pas accessibles, les données
+nécessaires à la production de la carte des Facteurs de Correction
+d'Atténuation et son traitement en images d'atténuation ;</p>
+<p>- Les paramètres du logiciel de fusion des images TEMP/TDM si
+nécessaire, notamment la table de correspondance entre les référentiels
+spatiaux des images TEMP et TDM.</p>
+<p>![](https://cdn.mathpix.com/cropped/2023_02_14_c5cac6413f5f6a21deb5g-06.jpg?height=1398&amp;width=2804&amp;top_left_y=200&amp;top_left_x=60)</p>
+<p>Tableau 4.2-A : Programme récapitulatif des principaux tests de
+contrôles de qualité avec tolérances et durées d'immobilisation
+associées (tests périodiques).</p>
+<p>![](https://cdn.mathpix.com/cropped/2023_02_14_c5cac6413f5f6a21deb5g-07.jpg?height=1376&amp;width=2804&amp;top_left_y=200&amp;top_left_x=60)</p>
+<p>Tableau 4.2-B : Programme récapitulatif des principaux tests de
+contrôles de qualité avec tolérances et durées d'immobilisation
+associées (tests annuels).</p>
+<h1 id="systemes-hybrides"><a class="header" href="#systemes-hybrides">SYSTEMES HYBRIDES</a></h1>
+<p>![](https://cdn.mathpix.com/cropped/2023_02_14_c5cac6413f5f6a21deb5g-08.jpg?height=951&amp;width=2772&amp;top_left_y=505&amp;top_left_x=76)</p>
+<p>Tableau 4.2-C : Programme récapitulatif des principaux tests de
+contrôles de qualité avec tolérances et durées d'immobilisation
+associées pour les systèmes hybrides TEMP-TDM.</p>
+<h2 id="programme-de-controle-de-qualite-interne"><a class="header" href="#programme-de-controle-de-qualite-interne">PROGRAMME DE CONTROLE DE QUALITE INTERNE</a></h2>
+<h3 id="calendrier-des-immobilisations-de-contrôle-et-de-suivi"><a class="header" href="#calendrier-des-immobilisations-de-contrôle-et-de-suivi">Calendrier des immobilisations de contrôle et de suivi</a></h3>
+<p>Les tableaux <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4.2</span></span></span></span> synthétisent l'ensemble des opérations de contrôle
+qualité permettant le suivi des performances de l'appareil et son
+adéquation avec les dispositions AFSSAPS.</p>
+<p>Il faut souligner que la personne responsable du contrôle qualité doit
+être en copie de tous les rapports d'intervention du constructeur afin
+de pouvoir adapter la nature des contrôles à la nature de l'intervention
+réalisée par le constructeur suite à une maintenance corrective ou lors
+d'une mise à jour logicielle majeure.</p>
+<h3 id="conditions-particulières-de-réalisation-de-certains-tests-de-suivi"><a class="header" href="#conditions-particulières-de-réalisation-de-certains-tests-de-suivi">Conditions particulières de réalisation de certains tests de suivi</a></h3>
+<p>Certains tests de suivi n'ont pas été décrits dans la partie 3 du
+document car ils n'entrent pas dans l'évaluation des performances. C'est
+le cas du test de bruit de fond qui relève des règles de bonnes
+pratiques, des contrôles du centre de rotation, de la qualité image TDM,
+réalisés selon les procédures constructeur et des vérifications de la
+spectrométrie et de l'uniformité (analyse visuelle ) effectuées au
+quotidien.</p>
+<h3 id="bruit-de-fond-"><a class="header" href="#bruit-de-fond-">Bruit de fond :</a></h3>
+<p>Faire une acquisition en absence de source.</p>
+<p>Noter le taux de comptage; il ne doit pas dépasser 2 fois sa valeur de
+référence.</p>
+<h3 id="test-visuel-de-non-uniformité-et-test-de-spectrométrie-"><a class="header" href="#test-visuel-de-non-uniformité-et-test-de-spectrométrie-">Test visuel de non-uniformité et test de spectrométrie :</a></h3>
+<p>Le but de ce contrôle quotidien est d'écarter toute défaillance du
+système avant la réalisation des images du patient. Il s'agit pour la
+non-uniformité, d'un contrôle qualitatif à effectuer chaque matin.</p>
+<p>Dans le cadre d'un programme de contrôle de qualité, l'utilisateur peut
+choisir, compte tenu du mode de fonctionnement de la caméra et du
+matériel dont il dispose, de réaliser ce test en mode intrinsèque ou en
+mode extrinsèque indépendamment.</p>
+<h1 id="--matériel-et-acquisition-des-données"><a class="header" href="#--matériel-et-acquisition-des-données">- Matériel et acquisition des données:</a></h1>
+<p>Le positionnement du matériel correspond au positionnement décrit au §
+3.2.2. L'utilisateur réalise une acquisition statique d'au moins 1
+million d'évènements.</p>
+<p>![](https://cdn.mathpix.com/cropped/2023_02_14_c5cac6413f5f6a21deb5g-10.jpg?height=762&amp;width=1610&amp;top_left_y=227&amp;top_left_x=223)</p>
+<p>Tableau 4-3. Conditions d'acquisition du contrôle quotidien de la
+réponse de la caméra.</p>
+<p>Une acquisition spectrométrique peut également être réalisée en
+conservant la même géométrie d'acquisition. La position du pic
+d'absorption totale est alors notée pour chaque détecteur.</p>
+<h1 id="--analyse-des-images-et-tolérances-"><a class="header" href="#--analyse-des-images-et-tolérances-">- Analyse des images et tolérances :</a></h1>
+<p>Le contrôle de la spectrométrie ne devra pas révéler de décalage de plus
+de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">keV</span></span></span></span></span> entre le pic d'absorption totale mesuré et sa valeur
+théorique ni de décalage de plus de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">3</span><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">keV</span></span></span></span></span> entre les deux
+détecteurs. Le contrôle visuel des images ne devra pas mettre en
+évidence de défauts ou de structures particulières dans l'image.</p>
+<h3 id="centre-de-rotation-"><a class="header" href="#centre-de-rotation-">Centre de rotation :</a></h3>
+<p>Pour ce contrôle, il est recommandé d'utiliser la procédure fournie par
+le constructeur pour l'acquisition des données, l'analyse et la
+présentation des résultats. Le matériel et la préparation des sources
+radioactives seront différents d'un dispositif à l'autre. En absence de
+procédure constructeur, on pourra utiliser la méthode décrite dans le
+paragraphe 3.4.3 du présent document et l'analyse présentée en annexe 2.</p>
+<h3 id="qualité-image-tdm-"><a class="header" href="#qualité-image-tdm-">Qualité image TDM :</a></h3>
+<p>Dans le cas des bonnes pratiques en TDM, on doit s'assurer que le test,
+a minima hebdomadaire, de qualité de l'image TDM (mesure du CTeau,
+bruit,...), selon les modalités du constructeur, est réalisé pour
+chaque calibrage du détecteur dans l'air.</p>
+<h1 id="lexique-des-abreviations-"><a class="header" href="#lexique-des-abreviations-">LEXIQUE DES ABREVIATIONS :</a></h1>
+<p>- BCE (balayage corps-entier) : mode d'acquisition pour lequel les
+détecteurs ou la table d'examen se déplacent pour enregistrer une image
+de dimension supérieure à la dimension axiale du détecteur</p>
+<p>- FDP, fonction de dispersion ponctuelle (PSF : Point Spread Function)</p>
+<p>- FDL, fonction de réponse linéique (LSF, line spread function)</p>
+<p>- EM-ML, maximisation de l'espérance - maximum de vraisemblance (EM-ML,
+expectation maximization - maximum likelihood)</p>
+<p>- LDH, largeur à un dixième du maximum (FWTM, full width at tenth
+maximum)</p>
+<p>- <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;"></span><span class="mspace" style="margin-right:1em;"></span></span></span></span> LMH, largeur à mi-hauteur (FWHM, full width at half-maximum)</p>
+<p>- OSEM, maximisation de l'espérance par sous-ensembles ordonnés (OSEM,
+ordered subset expectation maximization)</p>
+<p>- PFD principe fréquence-distance</p>
+<p>- ROI, région d'intérêt ( <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.02778em;">RO</span><span class="mord mathnormal" style="margin-right:0.07847em;">I</span></span></span></span>, region of interest)</p>
+<p>- RPF, rétroprojection filtrée (FBP, filtered back projection)</p>
+<p>- TEMP, tomographie d'émission monophotonique (SPECT, Single photon
+emission computed tomography)</p>
+<p>- TDM, tomodensitomètre (CT, computed tomography)</p>
+<p>- TPM, tube photomultiplicateur (PMT, photomultiplier tube)</p>
+<p>- CDV, champ de vue utile de l'image lié à la surface du détecteur dans
+laquelle les événements sont affichés (UFOV: Useful Field of View,
+d'après la définition NEMA)</p>
+<h1 id="annexe-1--precautions-de-mise-en-service-de-la-source-plane-scellee-de-57co"><a class="header" href="#annexe-1--precautions-de-mise-en-service-de-la-source-plane-scellee-de-57co">ANNEXE 1 : PRECAUTIONS DE MISE EN SERVICE DE LA SOURCE PLANE SCELLEE DE <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">57</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathbf">CO</span></span></span></span></span></a></h1>
+<p>Le <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">57</span></span></span></span></span></span></span></span></span></span></span></span> Co est régulièrement employé pour le calibrage et/ou le
+contrôle de l'uniformité de la caméra. La source plane encore appelée
+«galette de cobalt » est utile pour l'évaluation de la non-uniformité
+extrinsèque.</p>
+<p>Chaque source plane de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">57</span></span></span></span></span></span></span></span></span></span></span></span> Co est accompagnée d'un certificat
+d'étalonnage indiquant :</p>
+<p>- les références de la source,</p>
+<p>- son activité à une date de référence,</p>
+<p>- sa période physique,</p>
+<p>- l'uniformité de la source,</p>
+<p>- la nature et le niveau de ses contaminants.</p>
+<p>Pour le <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">57</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">Co</span></span></span></span></span>, les contaminants identifiés sont
+notamment les <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">56</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">Co</span></span></span></span></span> et <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">58</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">Co</span></span></span></span></span>; leurs
+teneurs sont typiquement <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.5782em;vertical-align:-0.0391em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.9444em;vertical-align:-0.1944em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">01%</span></span></span></span>. Les émissions photoniques
+d'énergies élevées de ces radionucléides vont perturber la réponse de la
+gamma-caméra. Ceux-ci génèrent des défauts dans l'image d'uniformité du
+fait de la pénétration septale du collimateur basse énergie pour les
+hautes énergies, ce qui leur donne, en pratique un rôle encore plus
+important.</p>
+<p>Energie (keV)   Intensité (%)   Energie (keV)   Intensité (%)</p>
+<hr />
+<pre><code>    511            39,21          2015,2           3,02
+   846,8           99,94          2034,8           7,74
+  1037,8           14,03          2598,4           16,96
+  1175,1           2,25           3009,6           1,04
+  1238,3           66,41          3201,9           3,20
+  1360,2           4,28           3253,4           7,87
+  1771,3           15,45          3273,0           1,86
+</code></pre>
+<p>Tableau A1 : Principales émissions gamma
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2485em;vertical-align:-0.35em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">du</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8984em;"><span style="top:-3.1473em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">56</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">Co</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord"><span class="mord mathrm">T</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1/2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">77</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">24</span><span class="mord mathrm">j</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span></span></span></span>.</p>
+<p>Energie (keV)   Intensité (%)</p>
+<hr />
+<pre><code>    511            30,0
+   810,8           99,45
+   863,9           0,69
+  1674,7           0,52
+</code></pre>
+<p>Tableau A2 : Principales émissions gamma du
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.238em;vertical-align:-0.35em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">58</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathrm">Co</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mord"><span class="mord mathrm">T</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.888em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1/2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord">70</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">83</span><span class="mord mathrm">j</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span></span></span></span>.
+Cet inconvénient peut être minimisé en laissant décroître la source
+avant de l'utiliser (6 mois environ pour les sources de
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord">500</span><span class="mord"><span class="mord mathrm">MBq</span></span></span></span></span> ) et/ou en l'éloignant du détecteur d'au moins
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">20</span><span class="mord"><span class="mspace nobreak"> </span><span class="mord mathrm">cm</span></span></span></span></span> (ce qui ne modifie pas l'efficacité du collimateur
+parallèle vis à vis de l'émission à <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">122</span><span class="mord"><span class="mord mathrm" style="margin-right:0.01389em;">keV</span></span></span></span></span> ).</p>
+<p>L'interprétation des résultats d'uniformité obtenus avec une source
+plane de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord"></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">57</span></span></span></span></span></span></span></span></span></span></span></span> Co doit également tenir compte de la non-uniformité
+propre à cette dernière. A titre d'exemple, le laboratoire Areva calcule
+pour chaque source, son uniformité au moyen d'un balayage par une sonde
+de NaI collimatée sur environ 2500 points d'analyse équi-distribués sur
+la surface utile. Les critères de non-uniformité calculés correspondent
+à l'écart-type de cette distribution qui doit rester inférieur à 1%, et
+au comptage maximal qui ne s'écarte pas de 3,5 % de la valeur moyenne de
+l'ensemble des comptages.</p>
+<p>Dans ces conditions, la source peut être employée pour le calibrage des
+tables d'énergie et d'uniformité définies avec le fournisseur, ainsi que
+pour les tests de suivi de non-uniformité et de spectrométrie pour une
+fenêtre spectrale d'acquisition centrée sur le pic principal composé des
+pics d'absorption totale des émissions <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mspace"> </span><span class="mord">2</span></span></span></span> et <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop op-symbol small-op" style="position:relative;top:0em;">⋁</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord">3</span></span></span></span> (compte-tenu
+de leurs résolutions en énergie, ces deux pics sont superposés sur les
+caméras à scintillations actuelles).</p>
+<h1 id="annexe-2--methode-danalyse-du-centre-de-rotation"><a class="header" href="#annexe-2--methode-danalyse-du-centre-de-rotation">ANNEXE 2 : METHODE D'ANALYSE DU CENTRE DE ROTATION</a></h1>
+<h1 id="Évaluation-des-dÉcalages-transverses-du-centre-de-rotation"><a class="header" href="#Évaluation-des-dÉcalages-transverses-du-centre-de-rotation">ÉVALUATION DES DÉCALAGES TRANSVERSES DU CENTRE DE ROTATION</a></h1>
+<p>(à utiliser en absence ou en évaluation de la solution logicielle
+proposée par le constructeur)</p>
+<p>Une méthode de calcul de l'ajustement du sinogramme expérimental
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span> par la
+fonction sinusoïdale <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span>
+est développée ici pour le calcul des paramètres transverses
+d'ajustement du centre de rotation nécessaires à l'analyse du centre de
+rotation (section 3.4.3)</p>
+<p>Calcul de l'élongation du centre de gravité : sinogramme des données
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></p>
+<p>Le calcul suivant s'opère suivant une ligne ou une colonne de matrice.
+Soit C(i) le nombre d'évènements contenus dans le pixel de coordonnée i
+et <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathrm">N</span></span></span></span> le nombre de pixels d'une ligne (ou colonne), la
+coordonnée <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathrm">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> (ou <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathrm" style="margin-right:0.025em;">Y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.025em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> ) est
+donnée par:</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:2.8419em;vertical-align:-1.1709em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.6709em;"><span style="top:-2.1288em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.6897em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:0em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.9812em;"><span style="top:-2.4003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.2029em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">N</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2997em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord mathnormal">i</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mopen">(</span><span class="mord mathnormal">i</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.1709em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>Ajustement des élongations des centres de gravité par une fonction
+sinusoïdale <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span></p>
+<p>Soit <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span> l'élongation
+transverse du centre de gravité relatif à la projection <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.4306em;"></span><span class="mord mathrm">m</span></span></span></span>
+(calcul précédent) et M le nombre de projections, l'équation de la
+sinusoïde d'ajustement s'écrit :</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">a</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1.836em;vertical-align:-0.686em;"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord amsrm">∅</span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathrm">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> représente la position du centre de rotation
+expérimental.</p>
+<p>Les étapes intermédiaires conduisant au calcul de <span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8778em;vertical-align:-0.1944em;"></span><span class="mord mathnormal">A</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord amsrm">∅</span></span></span></span> et
+<span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathrm">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathrm mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> sont les suivantes :</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord text"><span class="mord"> Partie R</span><span class="mord accent"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6944em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord">e</span></span><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="accent-body" style="left:-0.25em;"><span class="mord">ˊ</span></span></span></span></span></span></span><span class="mord">elle : PR </span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:3.0954em;vertical-align:-1.2671em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">cos</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span></span></span></p>
+<p><span class="katex-display"><span class="katex"><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:9.4909em;vertical-align:-4.4955em;"></span><span class="mord"><span class="mtable"><span class="col-align-r"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.9955em;"><span style="top:-6.9955em;"><span class="pstrut" style="height:3.8283em;"></span><span class="mord"></span></span><span style="top:-3.9784em;"><span class="pstrut" style="height:3.8283em;"></span><span class="mord"></span></span><span style="top:-0.9em;"><span class="pstrut" style="height:3.8283em;"></span><span class="mord"></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.4955em;"><span></span></span></span></span></span><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:4.9955em;"><span style="top:-6.9955em;"><span class="pstrut" style="height:3.8283em;"></span><span class="mord"><span class="mord"></span><span class="mord text"><span class="mord"> Partie Imaginaire : PI </span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mop">sin</span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size2">(</span></span><span class="mord">2</span><span class="mord mathnormal" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1076em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal">m</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size2">)</span></span></span></span></span><span style="top:-3.9784em;"><span class="pstrut" style="height:3.8283em;"></span><span class="mord"><span class="mord"></span><span class="mord mathnormal">A</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1359em;"><span class="svg-align" style="top:-3.2em;"><span class="pstrut" style="height:3.2em;"></span><span class="mord" style="padding-left:1em;"><span class="mord mathnormal" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7401em;"><span style="top:-2.989em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">PI</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8873em;"><span style="top:-3.1362em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.0959em;"><span class="pstrut" style="height:3.2em;"></span><span class="hide-tail" style="min-width:1.02em;height:1.28em;"><svg xmlns="http://www.w3.org/2000/svg" width='400em' height='1.28em' viewBox='0 0 400000 1296' preserveAspectRatio='xMinYMin slice'><path d='M263,681c0.7,0,18,39.7,52,119 c34,79.3,68.167,158.7,102.5,238c34.3,79.3,51.8,119.3,52.5,120 c340,-704.7,510.7,-1060.3,512,-1067 l0 -0 c4.7,-7.3,11,-11,19,-11 H40000v40H1012.3 s-271.3,567,-271.3,567c-38.7,80.7,-84,175,-136,283c-52,108,-89.167,185.3,-111.5,232 c-22.3,46.7,-33.8,70.3,-34.5,71c-4.7,4.7,-12.3,7,-23,7s-12,-1,-12,-1 s-109,-253,-109,-253c-72.7,-168,-109.3,-252,-110,-252c-10.7,8,-22,16.7,-34,26 c-22,17.3,-33.3,26,-34,26s-26,-26,-26,-26s76,-59,76,-59s76,-60,76,-60z M1001 80h400000v40h-400000z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.1041em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:1em;"></span><span class="mord amsrm">∅</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop"><span class="mord mathrm" style="margin-right:0.01389em;">arctg</span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.3603em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">PR</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathrm">PI</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span><span style="top:-0.9em;"><span class="pstrut" style="height:3.8283em;"></span><span class="mord"><span class="mord"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0077em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283em;"><span style="top:-1.8829em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mrel mtight">=</span><span class="mord mtight">0</span></span></span></span><span style="top:-3.05em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.2671em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0785em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.1667em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">(</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.02778em;">θ</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.1514em;"><span style="top:-2.55em;margin-left:-0.0278em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:4.4955em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                            <a rel="prev" href="gamma_camera_scintigraphique_planaire_ch_0.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+
+                            <a rel="next" href="gamma_camera_scintigraphique_corps_entier.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                    <a rel="prev" href="gamma_camera_scintigraphique_planaire_ch_0.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+
+                    <a rel="next" href="gamma_camera_scintigraphique_corps_entier.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+            </nav>
+
+        </div>
+
+
+
+
+        <script>
+            window.playground_copyable = true;
+        </script>
+
+
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
+
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
+
+        <!-- Custom JS scripts -->
+        <script src="./theme/tabbed-code-blocks.js"></script>
+        <script src="./theme/highlight.css"></script>
+
+
+    </div>
+    </body>
+</html>
