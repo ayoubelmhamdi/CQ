@@ -7,7 +7,7 @@ title = "Contrôle qualité en radiothérapie"
 
 [build]
 create-missing = false
-build-dir = "book/html"
+build-dir = "book"
 
 [output.html]
 site-url = "/CQ/"
