@@ -1,5 +1,7 @@
 # Learning from images to detect lung cancer using PyTorch
 
+The project is to create a detector for lung cancer using ct scans.
+
 # XXX
 ### introduction
 explores a single use case of detecting lung cancer in depth,The approach involves starting with the basic building blocks, and building out a more complete project using PyTorch.
@@ -12,10 +14,8 @@ explores a single use case of detecting lung cancer in depth,The approach involv
 
 The chapter also highlights the importance of breaking down complex problems into smaller ones, exploring the constraints of an intricate deep learning problem, and downloading the training data. The reader will learn about data formats, data sources, and how to explore the constraints that a problem domain places on the project.
 
-# Introduction to the Use Case
 
-
-The chosing to use the detection of malignant tumors in the lungs using only a CT scan of a patient's chest as input to illustrate how to overcome technical issues. Automatic detection of lung cancer is challenging, and even professional specialists face difficulty in identifying malignant tumors. Automating the process with deep learning will be more demanding and require a structured approach to succeeding.
+The choosing to use the detection of malignant tumors in the lungs using only a CT scan of a patient's chest as input to illustrate how to overcome technical issues. Automatic detection of lung cancer is challenging, and even professional specialists face difficulty in identifying malignant tumors. Automating the process with deep learning will be more demanding and require a structured approach to succeeding.
 
 Detecting lung cancer early is essential for increasing the patient's survival rate, but it's tough to do manually, especially on a large scale. Automating this process will provide readers with experience in dealing with difficult scenarios where solving problems is challenging.
 
@@ -23,21 +23,60 @@ The problem space of lung tumor detection is important because it is an active r
 
 # Preparing for a Large-Scale Project
 
-This project builds off the foundational skills learned in part 1, specifically model construction from chapter 8. The majority of the model consists of repeated convolutional layers followed by a resolution-reducing downsampling layer. However, the data will come in a $3 \D$ format instead of the 2D image data used in the previous chapters.
+This project builds with a model consists of repeated convolutional layers followed by a resolution-reducing downsampling layer. However, the data will come in a *3D* format.
 
-In chapter 8, almost all the time and attention were placed into building the model itself as a dataset was provided. However, for this project, the approach will be different since there is no pre-built library to provide suitable training samples for the model. Therefore, readers will have to learn and implement the data manipulation themselves. Additionally, readers need to understand that the project's approach will be more complicated to account for factors that could influence the process, such as limited data availability, finite computational resources, and limitations on our ability to design effective models.
+Because of there is no pre-built library to provide suitable training samples for the model. Therefore, we  will need to implement the data of manipulation. Additionally, and we need to understand that the project's approach will be more complicated to account for factors that could influence the process, such as limited data availability, finite computational resources, and limitations on our ability to design effective models.
 
-Readers will also need access to a GPU with at least $8 \~GB$ of RAM to achieve reasonable training speeds. If no GPU is available, pretrained models are provided in chapter 14, but the nodule analysis script will probably take at least a night to run. The authors state that Colaboratory provides free GPU instances that might be of use. Finally, readers would require a minimum of $220\~GB$ of free disk space to store the raw training data, cached data, and trained models.
-The text explains that the project is to create a detector for lung cancer using CT scans. Instead of looking at the entire CT scan, the method of breaking the problem down into simpler tasks will be used. Before going into the details of how the problem will be broken down, information on CT scans and their format is given. It is explained that CT scans are essentially 3D X-rays comprising a three-dimensional array of single-channel data. Each voxel of a CT scan has a numeric value that approximately corresponds to the average mass density of the matter contained inside. CT scans can render the data in a variety of ways and show the third dimension of the data. CT scans are much harder to obtain than X-rays and cost a lot of money. The project focuses on creating a detector for lung cancer using CT scans, and the text emphasizes the importance of learning about the medical domain to get effective results.
-In this text, the author discusses the process of creating an end-to-end solution for detecting nodules in lung CT scans using PyTorch. The process involves five main steps: loading the CT data, segmenting the image to identify potential tumors, grouping interesting voxels to form candidates, classifying the nodules, and diagnosing the patient based on the malignancy of the identified nodules. The author emphasizes the importance of focusing on one task at a time and learning to use basic building blocks before moving on to more complicated models. The text also mentions the use of human-annotated data for training and the importance of learning from previous work in the field. The author concludes by encouraging readers to experiment and learn from the results to make progress for themselves.
-The article describes an approach to building a lung cancer detection system, where data loading is done first (step 1) and then step 4 (classification) is completed before implementing steps 2 and 3. This is because step 4 requires a more familiar approach before exploring the more complicated topic of segmentation. The article explains the need to develop intuition about the problem space and the importance of understanding the data and problem before jumping in. The development of intuition comes from going into detail about lung tumors and CT scans. The article suggests that the problem space is complex because the majority of CT scans are uninteresting, so identifying malignant tumors can be challenging. As a result, an end-to-end approach may not be the best option, and the article's multi-step approach has some advantages, including more modular solutions and workload partition among teams.
-In chapter 2, a GAN game was discussed where two networks worked together to create convincing and authentic artwork. Our approach to solving this problem focuses on optimizing individual parts of the project, as we don't want the segmentation and classification models to be trained together. This single-task approach allows us to concentrate on each smaller skill and focus on specific areas of interest, rather than training the entire image at once. We will be classifying nodules in sequential transverse slices in chapter 11 and 12, and then segmenting tumors in chapter 13. In the final chapter, we will implement the end-to-end project using grouping and nodule analysis and diagnosis. We need to learn specifics about cancer and radiation oncology, such as what a nodule is, to understand the data better. The cancers we are trying to detect will always appear as nodules. The smallest nodules can be just a few millimeters across, and malignant nodules display visual discrepancies from other nodules. The LUNA Grand Challenge provides an open dataset with high-quality labels of patient CT scans for researchers to use and perform work. The goal is to encourage improvements to nodule detection and to test the efficacy of the detection methods against standardized criteria.
-In this text, it is explained that CT scans can be messy, with differences in scanners and processing programs. The LUNA 2016 dataset will be used, which contains generally clean data. The data is around 60 GB compressed and takes up around 120 GB of space when uncompressed. Candidates.csv and annotations.csv files are needed alongside the data subsets. If disk space is an issue, it is possible to use only 1 or 2 of the subsets, but the model will perform much more poorly. The dataset comes in 10 subsets. The larger context around the lung cancer detection project has been explained and the direction and structure of the project for part 2 has been outlined. The chapter has been informative only without any code exercises.
+we should access to a GPU with at least $8 ~GB$ of RAM to achieve reasonable training speeds. If no GPU is available. Finally, we would require a minimum of $220~GB$ of free disk space to store the raw training data, cached data, and trained models.
+
+
+
+Instead of looking at the entire CT scan, the method of breaking the problem down into simpler tasks will be used. Before going into the details of how the problem will be broken down, information on CT scans and their format is given. It is explained that CT scans are essentially 3D X-rays comprising a three-dimensional array of single-channel data. Each voxel of a CT scan has a numeric value that approximately corresponds to the average mass density of the matter contained inside. CT scans can render the data in a variety of ways and show the third dimension of the data. CT scans are much harder to obtain than X-rays and cost a lot of money. The project focuses on creating a detector for lung cancer using CT scans, and the text emphasizes the importance of learning about the medical domain to get effective results.
+
+
+
+## steps
+The process of creating an end-to-end solution for detecting nodules in lung CT scans using PyTorch.
+
+The process involves five main steps:
+- loading the CT data.
+- segmenting the image to identify potential tumors
+- grouping interesting voxels to form candidates
+- classifying the nodules
+- and diagnosing the patient based on the malignancy of the identified nodules.
+
+The use of human-annotated data for training and the importance of learning from previous work in the field.
+
+
+
+The development of intuition about the problem space and the importance of understanding the data and problem before jumping in. comes from going into detail about lung tumors and CT scans. the problem space is complex because the majority of CT scans are uninteresting, so identifying malignant tumors can be challenging.
+
+
+
+where two networks worked together to create convincing and authentic artwork. Our approach to solving this problem focuses on optimizing individual parts of the project, as we don't want the segmentation and classification models to be trained together.
+
+This single-task approach allows us to concentrate on each smaller skill and focus on specific areas of interest, rather than training the entire image at once. We will be classifying nodules in sequential transverse slices ,and then segmenting tumors.
+
+then we will implement the end-to-end project using grouping and nodule analysis and diagnosis. We need to learn specifics about cancer and radiation oncology, such as what a nodule is, to understand the data better.
+
+The cancers we are trying to detect will always appear as nodules. The smallest nodules can be just a few millimeters across, and malignant nodules display visual discrepancies from other nodules. The LUNA Grand Challenge provides an open dataset with high-quality labels of patient CT scans for researchers to use and perform work.
+
+The goal is to encourage improvements to nodule detection and to test the efficacy of the detection methods against standardized criteria.
+In this text, it is explained that CT scans can be messy, with differences in scanners and processing programs. The LUNA 2016 dataset will be used, which contains generally clean data. The data is around 60 GB compressed and takes up around 120 GB of space when uncompressed. Candidates.csv and annotations.csv files are needed alongside the data subsets.
+
+The dataset comes in 10 subsets.
+
+
 # Cancerous nodule detection
 
 ## Overview
 
-This text describes an approach to detecting cancerous nodules in medical images. The approach has five steps: data loading, segmentation, grouping, classification, and nodule analysis and diagnosis. The project will be divided into subprojects to facilitate teaching and understanding.
+The approach to detecting cancerous nodules in medical images. has five steps:
+- data loading
+- segmentation
+- grouping
+- classification
+- nodule analysis and diagnosis.
 
 ## Data processing
 
