@@ -137,47 +137,28 @@ Converting between patient coordinates in millimeters and (I,R,C) array coordina
 
 In CT scan images of patients with lung nodules, most of the data is not relevant to the nodule (up to 99.9999%). To extract the nods, an area around each candidate will be extracted, so the model can focus on one candidate at a time.
 
-The implementation involves building a dataset by subclassing PyTorch Dataset. The LunaDataset class flattens a CT's nodules into a single collection. The implementation of this class requires two methods: \_len\_ and \_\_getitem\_\_. The \_len\_ method returns the number of samples in the dataset, whereas \_\_getitem\_\_ returns a tuple with the four-item sample data needed to train (or validate).
-## Caching candidate arrays with the getCtRawCandidate function
+The implementation involves building a dataset by subclassing PyTorch Dataset. The LunaDataset class flattens a CT's nodules into a single collection. The implementation of this class requires two methods: firdt method returns the number of samples in the dataset, whereas the second returns a sample data needed to train (or validate).
 
-To improve the performance of the LunaDataset, we need to use on-disk caching to avoid loading an entire CT scan from the disk for every sample. We use the `getCtRawCandidate` function wrapped around the `Ct.getRawCandidate` method to cache the outputs to disk using the Python library `diskcache`. The caching method allows us to read in $2^{15}$ float32 values from disk faster than reading in $2^{25}$ int16 values, convert to float32, and select a $2^{15}$ subset. The cache will need to be removed if the definition of these functions ever changes.
 
-## Constructing our dataset in LunaDataset._init_()
-
-We are going to divide the samples into a training set and a validation set in LunaDataset by designating every tenth sample with the `val_stride` parameter as a member of the validation set. We also accept an `isValSet_bool` parameter to determine whether we should keep only the training data, the validation data, or everything. If we pass in a truthy `series_uid`, then the instance will only have nodules from that series.
-
-We allow `IunaDataset` to partition out $1/N$ th of the data into a subset used for validating the model. We can create two `Dataset` instances to ensure there is strict segregation between our training data and our validation data, depending on the task at hand. `self.candidateInfo_list` ensures a consistent sorted order, which helps with the segregation.
-
+## Constructing our dataset
 ## Training/validation split
 
-Our training and validation splits should have examples of all variations of expected inputs and not include samples that aren't representative of expected inputs. The training set should not provide unfair hints about the validation set that wouldn't be true for real-world data.
+We are going to divide the samples into a training set and a validation set in LunaDataset.
+
+We can create two `Dataset` instances to ensure there is strict segregation between our training data and our validation data, depending on the task at hand. we should ensures a consistent sorted order, which helps with the segregation.
+
+
+The training set should not provide unfair hints about the validation set that wouldn't be true for real-world data.
+
 # Rendering the data
 
-To render the data pertaining to CT and nodule slices, we can use `p2ch10_explore_data.ipynb` or start the Jupyter Notebook and run the necessary commands. The rendering code is complex and uses Matplotlib library. The data rendering process helps in getting an intuitive sense of what the data inputs look like. It also facilitates issue investigation by quickly identifying unusual samples or those that have problems. Effective data rendering is helpful in gaining familiarity with the data and in modifying it to tackle complex projects. The data rendering code can be edited as per our needs and tastes in the provided code file `p2ch10/vis.py`.
+To render the data pertaining to CT and nodule slices. The data rendering process helps in getting an intuitive sense of what the data inputs look like. It also facilitates issue investigation by quickly identifying unusual samples or those that have problems. Effective data rendering is helpful in gaining familiarity with the data and in modifying it to tackle complex projects.
 
 # Conclusion
 
 This chapter helped us transform raw data into tensors using PyTorch. These design decisions including input size, caching structure and partitioning of training and validation sets have a significant impact on the success or failure of our overall project. Therefore, revisiting these decisions later on while working on our projects is advised. We are now set to implement a model and a training loop in the next chapter.
-# Exercises
 
-## Exercise 1
-Create a program that goes through a LunaDataset and calculates the time it takes for the operation. It would be a good idea to have an option to limit the iterations to the first 1000 samples to save time.
 
-a. Record the time it takes on the first run.
-
-b. Record the time of the second run.
-
-c. What happens to the runtime when you clear the cache?
-
-d. How does the runtime change when you limit the iterations to the last 1000 samples?
-
-## Exercise 2
-Change the LunaDataset implementation to randomize the order of the sample list during the initialization. Clear the cache and record the time it takes for the dataset to run. Compare the results to the previous exercise.
-
-## Exercise 3
-Undo the change from exercise 2 and remove the functools.lru_cache decorator. Clear the cache and calculate the runtime of the dataset. Compare the results to the previous exercises.
-In this text, the author explains the implementation of a Ct class that loads data from disk and provides access to cropped regions around points of interest. They also mention that caching can be useful if the parsing and loading routines are expensive. The text explains that PyTorch Dataset subclasses are used to convert data into tensors suitable to pass in the model. The author then proceeded to explain the process of splitting data into training and validation sets, and the importance of data visualization. The chapter then moves on to explain the foundational model and training loop for the nodule classification model which will be used to detect suspected tumors. The author emphasizes the importance of metrics logging in determining the impact of changes on training.
-The second part of the book introduces a command-line application that allows running the training routines from both Jupyter and a Bash shell. The application functionality is implemented via a class so that it can be instantiated and passed around for easier testing, debugging or invocation from other Python programs. The training is assumed for a workstation with specific hardware specifications, but it can be adjusted by reducing the batch size or the number of workers. The article provides some boilerplate code as well as the application class with its two functions __init__ and main. The argparse library is used to accept command-line arguments, and the main method will be the primary entry point for the core logic of the application. Initialization work needs to occur before iterating over each batch. This involves initializing the model and optimizer, LunaDataset, and DataLoader instances. Finally, the article provides two figures that explain the initialization process.
 # Initializing the model and optimizer
 
 In this section, the code initializes a model (named LunaModel) and an optimizer. The internal workings of the model are not discussed until section 11.4. The details of the optimizer used are explained, and the significance of self.model.to(device) is highlighted in ensuring the optimizer uses the copied GPU-based parameter objects rather than leaving the optimizer looking at the CPU-based parameter objects.
