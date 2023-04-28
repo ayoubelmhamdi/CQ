@@ -105,35 +105,39 @@ For supervised learning tasks like classification, we need to split our data int
 
 In this context, we'll split our nodules' dataset by size and take every Nth one for our validation set. However, the location information provided in annotations.csv may not precisely line up with the coordinates in candidates.csv. So, we need to match them using the coordinates' respective measurements.
 
-# Unifying our annotation and candidate data
 
-We'll use a `getCandidateInfoList` function that will stitch all the information together. We specify a named tuple that will hold each nodule's information, including the nodule status, diameter, series, and candidate center. These tuples represent a sanitized and cleaned interface for the human-annotated data. They are not our training samples as they are missing the chunks of CT data that we need.
-
-We start the function by using an in-memory caching decorator to get files' list present on disk since parsing some of the data files can be slow. We cache the results of this function call in memory since we'll be calling this function more often in the subsequent steps, which can speed up our data pipeline.
-
-We support running our training program with less than the full set of training data due to long download times and high disk space requirements. `Require_onDisk_bool` parameter helps us detect which LUNA series UIDs are actually present and ready to be loaded from disk. We use that information to limit which entries we use from the CSV files we're about to parse.  Being able to run a subset of our data through the training loop can help us verify that the code is working as intended. We will then build our full list of candidate nodules using the information in the candidates.csv file.
 
 # Loading individual CT scans
 
-We will take our CT data from a pile of bits on disk and turn it into a Python object from which we can extract 3D nodule density data. Our nodule annotation information acts like a map to the relevant parts of our raw data. Before we can follow that map to our data of interest, we need to get the data into an addressable form. We will discuss this more in section 10.5.3.
-The text discusses how to load and understand CT scan data, which is usually stored in a DICOM file format. The MetaIO format is suggested for easier use, and the Python SimpleITK library can be used to convert it to a NumPy array. Each CT scan is uniquely identified by a series instance UID. The Hounsfield Unit (HU) scale is used to measure CT scan voxel density, with air at -1000 HU, water at 0 HU, and bone at least 1000 HU. It's important to clean the data by removing outlier values to prevent difficulties in modeling.
+We will take our CT data from a pile of bits on disk and turn it into a Python object from which we can extract 3D nodule density data. Our nodule annotation information acts like a map to the relevant parts of our raw data. Before we can follow that map to our data of interest, we need to get the data into an addressable form.
+
+We need to understand how to load and understand CT scan data, which is usually stored in a DICOM file format. The MetaIO format is suggested for easier use, and the Python SimpleITK library can be used to convert it to a NumPy array. Each CT scan is uniquely identified by a series instance UID. The Hounsfield Unit (HU) scale is used to measure CT scan voxel density, with air at -1000 HU, water at 0 HU, and bone at least 1000 HU.
+
+It's important to clean the data by removing outlier values to prevent difficulties in modeling.
+
 # Data Ranges and Model Inputs
 
-In chapter 13 of our project, we add channels of information to our samples. To prevent overshadowing of the new channels by raw HU values, we must be aware that our data ranges from $-1,000$ to $+1,000$. We won't add more channels of data for the classification step, so our data handling will remain the same.
+[...] We add channels of information to our samples. To prevent overshadowing of the new channels by raw HU values, we must be aware that our data ranges from $-1,000$ to $+1,000$. We won't add more channels of data for the classification step, so our data handling will remain the same.
 
+[modified]
 For deep learning models, fixed-size inputs are necessary due to a fixed number of input neurons. Therefore, we need to produce a fixed-size array containing the candidate in order to use it as input to our classifier. We want to train our model using a crop of the CT scan that accurately centers the candidate, making identification easier for the model by decreasing the variation in expected inputs.
+
+
 ## The Patient Coordinate System
 
-The candidate center data expressed in millimeters, not voxels. We need to convert our coordinates from the millimeter-based coordinate system $(\X, \Y, \Z)$ to the voxel-address-based coordinate system $(\I, \R, \C)$. The patient coordinate system defines the positive $\X$ to be patient left, positive $\Y$ to be patient behind, and the positive $\Z$ to be toward patient head. The patient coordinate system is often used to specify the locations of interesting anatomy in a way that is independent of any particular scan.
+The candidate center data expressed in millimeters, not voxels. We need to convert our coordinates from the millimeter-based coordinate system $(X, Y, Z)$ to the voxel-address-based coordinate system $(I, R, C)$. The patient coordinate system defines the positive $X$ to be patient left, positive $Y$ to be patient behind, and the positive $Z$ to be toward patient head. The patient coordinate system is often used to specify the locations of interesting anatomy in a way that is independent of any particular scan.
 
 ## CT Scan Shape and Voxel Sizes
-
+[???]
 The size of the voxels varies between CT scans and typically are not cubes. The row and column dimensions usually have voxel sizes that are equal, and the index dimension has a larger value, but other ratios can exist. Understanding these details can help in interpreting the results visually.
 
 ## Converting Between Millimeters and Voxel Addresses
 
 Converting between patient coordinates in millimeters and (I,R,C) array coordinates, we define some utility code to assist with the conversion. Flipping the axes is encoded in a $3 \times 3$ matrix returned as a tuple from the ct_mhd. The metadata we need to convert from patient coordinates to array coordinates is contained in the MetaIO file alongside the CT data itself.
-In CT scan images of patients with lung nodules, most of the data is not relevant to the nodule (up to 99.9999%). To extract the nods, an area around each candidate will be extracted, so the model can focus on one candidate at a time. The implementation involves building a dataset by subclassing PyTorch Dataset. The LunaDataset class flattens a CT's nodules into a single collection. The implementation of this class requires two methods: \_len\_ and \_\_getitem\_\_. The \_len\_ method returns the number of samples in the dataset, whereas \_\_getitem\_\_ returns a tuple with the four-item sample data needed to train (or validate).
+
+In CT scan images of patients with lung nodules, most of the data is not relevant to the nodule (up to 99.9999%). To extract the nods, an area around each candidate will be extracted, so the model can focus on one candidate at a time.
+
+The implementation involves building a dataset by subclassing PyTorch Dataset. The LunaDataset class flattens a CT's nodules into a single collection. The implementation of this class requires two methods: \_len\_ and \_\_getitem\_\_. The \_len\_ method returns the number of samples in the dataset, whereas \_\_getitem\_\_ returns a tuple with the four-item sample data needed to train (or validate).
 ## Caching candidate arrays with the getCtRawCandidate function
 
 To improve the performance of the LunaDataset, we need to use on-disk caching to avoid loading an entire CT scan from the disk for every sample. We use the `getCtRawCandidate` function wrapped around the `Ct.getRawCandidate` method to cache the outputs to disk using the Python library `diskcache`. The caching method allows us to read in $2^{15}$ float32 values from disk faster than reading in $2^{25}$ int16 values, convert to float32, and select a $2^{15}$ subset. The cache will need to be removed if the definition of these functions ever changes.
