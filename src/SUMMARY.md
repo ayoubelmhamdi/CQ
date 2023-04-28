@@ -4,6 +4,7 @@
 - [(EN) NEMA 2007 gamma camera](./NEMA2007_gamma_camerad.md)
 - [test](./test.md)
 - [pyTorch 1](./pytorch1.md)
+- [pyTorch 2](./pytorch2.md)
 <!-- - [GAMMA CAMERA](./gamma_camera_ch0.md) -->
 <!--   - [Théorique](./gamma_camera_theorique.md) -->
 <!--     - [Scintigraphique planaire](./gamma_camera_scintigraphique_planaire_ch_0.md) -->
