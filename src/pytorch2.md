@@ -143,7 +143,7 @@ The implementation involves building a dataset by subclassing PyTorch Dataset. T
 ## Constructing our dataset
 ## Training/validation split
 
-We are going to divide the samples into a training set and a validation set in LunaDataset.
+We are going to divide the samples into a training set and a validation set.
 
 We can create two `Dataset` instances to ensure there is strict segregation between our training data and our validation data, depending on the task at hand. we should ensures a consistent sorted order, which helps with the segregation.
 
@@ -160,24 +160,22 @@ This chapter helped us transform raw data into tensors using PyTorch. These desi
 
 
 # Initializing the model and optimizer
-
-In this section, the code initializes a model (named LunaModel) and an optimizer. The internal workings of the model are not discussed until section 11.4. The details of the optimizer used are explained, and the significance of self.model.to(device) is highlighted in ensuring the optimizer uses the copied GPU-based parameter objects rather than leaving the optimizer looking at the CPU-based parameter objects.
-
 # DataParallel vs. DistributedDataParallel
-
-Working with multiple GPUs can be handled using DataParallel or DistributedDataParallel. This book uses DataParallel because it's a simple wrapper that is almost entirely transparent in terms of the model implementation and the code using that model. DistributedDataParallel is a more complex wrapper, and the setup and configuration can be nontrivial. However, PyTorch provides it as the recommended wrapper class for multi-GPU or multi-machine use cases.
-
 # Care and feeding of data loaders
-
-The PyTorch DataLoader class helps with collating sample tuples into a batch tuple, allowing multiple samples to be processed at the same time. DataLoader handles all of the collation work and can provide parallel loading of data by using separate processes and shared memory. The collated data are used to train the model. Working with a validation set is also discussed, where validation_ds and validation_dl instances are similar, except for the obvious isValSet_bool=True.
-
 # Our first-pass neural network design
 
-The text concludes with a reference to the first-pass neural network design to be designed in the coming chapters. Discussions continue on how to adjust the project configuration settings systematically in a hyperparameter search. The section ends with advice on using data-loading features to increase the speed of projects as loading and processing data can overlap with GPU calculation.
-In this text, the author discusses the design of a convolutional neural network for detecting tumors. They state that although the design space for such a network is vast, there have been effective models for image recognition that can be used as a starting point. A pre-existing network design will be modified for the project, with some adjustments made due to the input data being 3D. The text includes an image of the overall structure of the network and mentions that the four repeated blocks that make up most of the network will be examined in more detail. The author believes that this project will provide a good foundation for future projects, although some adaptation may be necessary depending on the specific project.
+[...]
+The design of a convolutional neural network for detecting tumors. They state that although the design space for such a network is vast, there have been effective models for image recognition that can be used as a starting point. A pre-existing network design will be modified for the project, with some adjustments made due to the input data being 3D.
+
+This image show the structure of the network and mentions that the four repeated blocks that make up most of the network will be examined in more detail.
+
 Convolutional neural networks typically have a tail, backbone, and head. The tail processes the input, while the backbone contains most of the layers arranged in series of blocks. The head converts the output from the backbone to the desired output form. One block consists of two 3x3 convolutions followed by max-pooling. Stacking convolutional layers allows the final output to be influenced by input beyond the size of the convolutional kernel. A fully connected layer followed by nn.Softmax makes up the tail. Softmax is used for single-label classification tasks and expresses the degree of certainty in an answer.
-The text discusses the implementation of a deep learning model called Luna, used for computer-aided detection of lung nodules in medical images. The model uses convolutional neural networks and softmax layers to classify the images. The text also covers techniques for initializing the model parameters and the training process for the model. Different from previous training loop examples, the author uses a tensor to collect per-class metrics while iterating over the train data loader, and the actual loss computation is done in the computeBatchLoss method. The purpose of the `trnmetrics_g` tensor is to store information about the model's behavior on a per-sample basis from the `computeBatchLoss` function to the `logMetrics` function.
+
+Our implementation of a deep learning model is called called `Luna`, used for computer-aided detection of lung nodules in medical images. The model uses convolutional neural networks and softmax layers to classify the images. The text also covers techniques for initializing the model parameters and the training process for the model. Different from previous training loop examples, the author uses a tensor to collect per-class metrics while iterating over the train data loader, and the actual loss computation is done in the computeBatchLoss method. The purpose of the `trnmetrics_g` tensor is to store information about the model's behavior on a per-sample basis from the `computeBatchLoss` function to the `logMetrics` function.
+
+
 The `computeBatchLoss` function calculates the loss over a batch of samples which is used by both the training and validation loops. The core functionality of the function is feeding the batch into the model and computing the per-batch loss. By recording the label, prediction, and loss for each sample, we can have a wealth of detailed information we can use to investigate the behavior of our model. The validation loop is similar to the training loop, but without updating network weights. Per epoch, the performance metrics are logged and the progress is tracked. This logging is important because it helps us to notice when training is going off track and to keep an eye on how our model behaves.
+
 ## `logMetrics` Function
 
 The `logMetrics` function displays the results of the `computeBatchLoss` function with details about the training or validation samples. The `mode_str` argument indicates whether the metrics are for training or validation.
@@ -191,13 +189,6 @@ The function then computes some per-label statistics and stores them in a dictio
 Finally, the results are displayed as percentages using the `log.info` function.
 
 
-Running the script
-To run the entire script, run:
-
-```bash
-$ python -m p2ch11.training
-```
-This command is for Linux/Bash. Windows users might need to invoke Python Starting LunaTrainingApp differently, depending on the install method used.
 ### Epoch Training
 
 The text talks about the first epoch of a deep learning model's training process. The first epoch is divided into 20,193 steps called batches, each containing 256 data points. The training progress is represented in a log format, showing the number of batches that have been completed and the current status of the training process.
