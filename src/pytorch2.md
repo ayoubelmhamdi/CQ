@@ -210,23 +210,8 @@ The loss trend lines highlight that the model is learning something. However, th
 
 The chapter has provided a model and a training loop, and now we are able to use the data produced in the previous chapter. The metrics are being displayed in the console and graphed visually, but the results are not fully usable yet. However, the upcoming chapter will focus on improving the metrics and using them to make necessary changes in order to achieve better results.
 
-## Exercises
+## XXX
 
-1. Develop a program which measures how long it takes to iterate through a LunaDataset instance by wrapping it in a DataLoader instance. Then, compare the performance of this program to the ones in chapter 10. During the program execution, it is important to consider the state of the cache.
-
-   a. What would be the effects of setting `num_workers` to 0, 1 or 2?
-
-   b. What is the highest value of `batch_size` and `num_workers` that your machine will support without running out of memory?
-
-2. Reverse the order of `noduleInfo_list`. What is the impact on the model after one epoch of training?
-
-3. Modify `logmetrics` to adjust the naming scheme of the runs and keys utilized in TensorBoard.
-
-   a. Experiment with different forward-slash placements for keys passed into `writer.add_scalar`.
-
-   b. Use the same writer for both training and validation runs, and include the string "trn" or "val" in the key name.
-
-   c. Customize the directory's naming and the keys to your preference.
 Data loaders can be used to load data from various sets by utilizing various processors. This enables unused CPU resources to be utilized for preparing data to be fed to the GPU.
 
 Each dataset may contain several samples which can be loaded by data loaders in batches. PyTorch model processing is designed to operate on batches of data and not individual samples.
@@ -278,58 +263,8 @@ This text discusses various data augmentation techniques that can be used to imp
 ## Summary:
 
 This chapter discusses how to evaluate a model's performance and the importance of understanding the factors that contribute to it. It also covers dealing with insufficiently populated data sources and synthesizing representative training samples. The focus then shifts to finding candidate nodules and classifying them as malignant or benign in the upcoming chapters.
-# Exercises
 
-## 1. Generalizing F1 score
-
-The F1 score can be extended to support values other than 1.
-
-a) Click the link to https://en.wikipedia.org/wiki/F1_score and implement F2 and F0.5 scores.
-
-b) Determine the most appropriate score (F1, F2 or F0.5) for the project, track the score and compare it with the F1 score.
-
-## 2. Balancing training samples.
-
-Implement a WeightedRandomSampler approach to balance positive and negative training samples for the LunaDataset with a ratio_int value of 0.
-
-a) How did you obtain the required information about the class of each sample?
-
-b) Which of the two approached was easier, and which resulted in more readable code?
-
-## 3. Experimenting with class-balancing schemes
-
-a) What ratio of class balance produces the best score after two and twenty epochs?
-
-b) What if the ratio is a function of epoch_ndx?
-
-## 4. Experimenting with data augmentation
-
-a) Can any of the existing augmentation techniques be made more aggressive?
-
-b) Does including noise augmentation help or hinder the training results?
-
-c) Research data augmentation in other projects. Are any of them applicable here? Implement "mixup" augmentation for positive nodule candidates. Does it help?
-
-## 5. Retrain model with custom initial normalization
-
-a) Can better results be obtained by using fixed normalization?
-
-b) What normalization offset and scale make sense?
-
-c) Do nonlinear normalization techniques such as square roots help?
-
-## 6. Displaying other data on Tensorboard
-
-a) Can TensorBoard display information about the weights of your network?
-
-b) Can intermediate results from running your model on a specific sample be displayed on TensorBoard?
-
-c) Does having the backbone of your model wrapped in an instance of nn.Sequential help or hinder this effort?
-
-## 7. Bonus question
-
-Hint: It is not about the F1 score!
-The text explains the concepts of precision, recall, and F1 score, which are metrics used to evaluate the performance of a classification model. It also presents strategies to improve the model's performance through balanced training sets and data augmentation.
+## XX
 
 The focus of the chapter is the process of segmentation to identify possible nodules, which is step 2 of the project's plan. The segmentation model is created using a U-Net and involves updating the model, dataset, and training loop. The objective is to flag voxels that might be part of a nodule and use the classification step to reduce the number of incorrectly marked voxels. The chapter explains the steps involved in creating a model for segmentation, including per-pixel labeling and training with masks. Finally, the results of the new model are evaluated through quantitative segmentation.
 # Various types of segmentation
@@ -394,14 +329,8 @@ For training, instead of the full CT slices, $64 \times 64$ crops around the pos
 The validation dataset uses the same convolutions with the same weights, but applied to a larger set of pixels. Due to the inclusion of more negative pixels, the model will have a high false positive rate during validation.
 # Implementing TrainingLuna2dSegmentationDataset
 
-This section of the text presents the code implementation of the "TrainingLuna2dSegmentationDataset". The code snippet shows the implementation for a method named "\_getitem\_" for the training set, where samples are taken from "pos_list". This method is almost the same as the one for the validation set. However, there is a difference, as the "getItem_trainingCrop" method is used to process the sample with candidate info from the tuple. This tuple includes both the series and the exact center location, which is not available in just the slice. The code snippet shared below provides additional details on the implementation of the "\_getitem\_" method for the "TrainingLuna2dSegmentationDataset".
+This section of the text presents the code implementation of the "TrainingLuna2dSegmentationDataset". The code snippet shows the implementation for a method  for the training set, where samples are taken from "pos_list". This method is almost the same as the one for the validation set. However, there is a difference, as the "getItem_trainingCrop" method is used to process the sample with candidate info from the tuple. This tuple includes both the series and the exact center location, which is not available in just the slice. The code snippet shared below provides additional details on the implementation of the "\_getitem\_" method for the "TrainingLuna2dSegmentationDataset".
 
-```python
-# Listing 13.17 dsets.py:320, __getitem__
-def getitem__(self, ndx):
-    candidateInfo_tup = self.pos_list[ndx % len(self.pos_list)]
-    return self.getitem_trainingCrop(candidateInfo_tup)
-```
 The text discusses implementing `getitem_trainingCrop` using `getctRawCandidate` function, which crops the image to a smaller size and returns an array with an additional crop. The data augmentation process is moved to the GPU to avoid bottleneck issues. A new model is introduced called `SegmentationAugmentation`, which consumes and produces tensors similarly to other models. The `training.py` script is updated to instantiate the new model, introduce Dice loss, and logs more metrics such as TensorBoard images, along with saving based on validation. The new model's initialization is similar to that of `UNetWrapper`.
 UNet Input and Output
 - For input into UNet, we have seven input channels; $3+3$ context slices, and 1 slice that is the focus for what we're actually segmenting.
